@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\IndexController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('login', [LoginController::class, 'index'])->name('login');
+Route::post('logging-in', [LoginController::class, 'loggingIn'])->name('loggingin');
+Route::post('register-user', [LoginController::class, 'registerUser'])->name('registeruser');
+
+Route::get('/', [IndexController::class, 'index'])->name('index');
