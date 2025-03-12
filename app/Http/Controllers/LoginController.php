@@ -98,7 +98,7 @@ class LoginController extends Controller
                 Auth::user()->update([
                     'password' => bcrypt($request->password),
                 ]);
-                return redirect()->back()->with('success','Password Changed Successfully');
+                return redirect()->route('index')->with('success','Password Changed Successfully');
             }else{
                 return redirect()->back()->with('success','Current Password Does Not match');
             }
