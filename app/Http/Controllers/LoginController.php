@@ -107,9 +107,16 @@ class LoginController extends Controller
         }
     }
 
-    public function loggingOut(){
-        auth()->logout();
-        return redirect()->route('login')->with('success', 'logged Out');
+    public function loggingOut()
+    {
+        foreach (['web', 'admin', 'seller'] as $guard) {
+            if (auth($guard)->check()) {
+                auth($guard)->logout();
+                break;
+            }
+        }
+
+        return redirect()->route('index')->with('success', 'Logged Out');
     }
 
 }

@@ -27,10 +27,15 @@
             <a class="nav-link disabled" aria-disabled="true">Disabled</a>
           </li>
         </ul>
-        <form class="d-flex" role="search" action="{{route('loggingout')}}" method="post">
-            @csrf
-          <button class="btn btn-outline-danger" type="submit">Logout</button>
-        </form>
+        @if(collect($authenticatedGuards)->contains(true))
+            <form class="d-flex" role="search" action="{{ route('loggingout') }}" method="post">
+                @csrf
+                <button class="btn btn-outline-danger" type="submit">Logout</button>
+            </form>
+        @else
+            <a href="{{ route('login') }}" class="btn btn-outline-primary">Login</a>
+        @endif
+
       </div>
     </div>
 </nav>
