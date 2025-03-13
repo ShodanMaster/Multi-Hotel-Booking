@@ -78,6 +78,8 @@
             </div>
         </form>
     </div>
+
+    Wanna Showcase you Your Hotel? <a href="{{route('hotel.register')}}">Click Here!</a>
 </div>
 @endsection
 

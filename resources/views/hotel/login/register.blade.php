@@ -6,7 +6,8 @@
             <span id="form-title">Hotel Register</span>
         </div>
 
-        <form id="register-form">
+        <form action="{{route('hotel.hotelregister')}}" method="post">
+            @csrf
             <div class="card-body">
                 <div class="form-group mb-3">
                     <input type="text" class="form-control" name="name" id="name" placeholder="Full Name" required>
@@ -41,6 +42,7 @@
                 <button class="btn btn-primary">Register</button>
             </div>
         </form>
+
     </div>
 </div>
 @endsection
@@ -48,16 +50,6 @@
 @section('scripts')
     <script>
         $(document).ready(function () {
-
-            // Toggle password visibility for login form
-            $('#show-password').change(function() {
-                var passwordField = $('#password');
-                if ($(this).prop('checked')) {
-                    passwordField.attr('type', 'text');
-                } else {
-                    passwordField.attr('type', 'password');
-                }
-            });
 
             // Toggle password visibility for signup form (password)
             $('#show-regitser-password').change(function() {
@@ -82,7 +74,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "{{route('registeruser')}}",
+                    url: "{{route('hotel.hotelregister')}}",
                     data: formData,
                     dataType: "json",
                     contentType: false,

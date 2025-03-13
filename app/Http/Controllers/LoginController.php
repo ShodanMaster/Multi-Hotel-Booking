@@ -32,6 +32,8 @@ class LoginController extends Controller
 
             if (auth()->guard('web')->attempt($credentials, $rememberMe)) {
                 return redirect()->route('index')->with('success', 'Logged In');
+            }elseif (auth()->guard('hotel')->attempt($credentials, $rememberMe)) {
+                return redirect()->route('hotel.index')->with('success', 'Logged In');
             }elseif (auth()->guard('admin')->attempt($credentials, $rememberMe)) {
                 return redirect()->route('admin.index')->with('success', 'Logged In');
             } else {
@@ -109,7 +111,7 @@ class LoginController extends Controller
 
     public function loggingOut()
     {
-        foreach (['web', 'admin', 'seller'] as $guard) {
+        foreach (['web', 'admin', 'hotel'] as $guard) {
             if (auth($guard)->check()) {
                 auth($guard)->logout();
                 break;
